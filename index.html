@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="store">
+
+<head>
+    <title>test</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+
+<body ng-controller="StoreController as store">
+    <div ng-repeat="product in store.products |orderBy : '-price'">
+        <h1>{{product.name | uppercase}}</h1>
+        <img ng-src="{{product.image}}" style="width:10%" />
+        <!-- <h2> {{product.price | currency}}</h2> -->
+        <!-- <p>{{product.description}}</p> -->
+        <br/><br/>
+
+        <button class= "btn btn-info" ng-show="product.canPurchase">Add to Cart</button>
+        <hr/>
+        <section ng-controller="PanelController as panel">
+            <ul class="nav nav-pills">
+                <li ng-class = "{active : panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Descriptions</a></li>
+                <li ng-class = "{active : panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Specifications</a></li>
+                <li ng-class = "{active : panel.isSelected(3) }"><a href ng-click="panel.selectTab(3)">Reviews</a></li>
+            </ul>
+           
+       
+        <div class = "panel" ng-show = "panel.isSelected(1)">
+        <h4>Description </h4>
+        <p>{{product.description}}</p>
+        </div>
+
+            <div class = "panel" ng-show = "panel.isSelected(2)">
+        <h4>Specifications</h4>
+        <p>{{product.price |currency}}</p>
+
+        </div>
+
+            <div class = "panel" ng-show = "panel.isSelected(3)">
+        <h4>Reviews</h4>
+        <p>Bought this. I am broke now.</p>
+        </div>
+
+</section>
+    </div>
+    <!--     <div ng-hide="store.products[1].soldOut">
+        <h1>{{store.products[1].name}}</h1>
+        <h2> ${{store.products[1].price}} </h2>
+        <p>{{store.products[1].description}}</p>
+        <img ng-source="st"
+        <button ng-show="store.products[1].canPurchase">Add to Cart</button>
+    </div> 
+ -->
+</body>
+
+</html>
