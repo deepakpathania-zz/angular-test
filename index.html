@@ -38,8 +38,34 @@
         </div>
 
             <div class = "panel" ng-show = "panel.isSelected(3)">
-        <h4>Reviews</h4>
-        <p>Bought this. I am broke now.</p>
+        <h4 ng-repeat = "temp in product.reviews">
+        <p><b>{{temp.stars}}</b> {{temp.body}} {{temp.author}}</p>
+        </h4>
+        <hr/>
+        <h5><b>Submit a review</b></h5>
+        <hr/>
+        <form name="reviewForm" ng-controller = "ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+        <blockquote> Live Preview of review <br>
+        	<b>{{reviewCtrl.review.stars}}</b>
+        	<p>{{reviewCtrl.review.body}}</p>
+        	<cite ng-show="reviewCtrl.review.author">by : {{reviewCtrl.review.author}} </cite>
+
+        </blockquote>
+        <select ng-model = "reviewCtrl.review.stars">
+         <option value="" disabled selected>Select your rating</option>
+        <option value = "1 star"> 1  </option>
+           <option value = "2 stars"> 2  </option>
+              <option value = "3 stars"> 3  </option>
+                 <option value = "4 stars"> 4  </option>
+                    <option value = "5 stars"> 5 </option>
+        </select>
+        <br/> <br/> 
+        <textarea ng-model= "reviewCtrl.review.body"} placeholder="Review this gem here."></textarea>
+        <br/>
+        <label>by:</label>
+        <input ng-model = "reviewCtrl.review.author" type="email" placeholder="abc@gmail.com"/>
+        <button class= "btn btn-info">Submit</button>
+        </form>
         </div>
 
 </section>
